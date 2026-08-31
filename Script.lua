@@ -9,6 +9,7 @@ getgenv().Aimbot = false
 getgenv().Esp = false
 getgenv().Smooth = 0.25
 
+-- High-Compatibility Framework Hook
 local Orion = loadstring(game:HttpGet("https://githubusercontent.com"))()
 
 local W = Orion:MakeWindow({
@@ -18,7 +19,7 @@ local W = Orion:MakeWindow({
     ConfigFolder = "OrionConfig"
 })
 
-local KTab = W:MakeTab({Name = "Key System", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+local KTab = W:MakeTab({Name = "Key System"})
 local KeyInput = ""
 
 local function GetClosest()
@@ -41,18 +42,13 @@ local function LoadHub()
         Duration = 4
     })
 
-    local Main = Orion:MakeWindow({
-        Name = "Nexus Suite", 
-        HidePremium = true, 
-        SaveConfig = false, 
-        ConfigFolder = "NexusSuiteConfig"
-    })
-    
-    local Tab = Main:MakeTab({Name = "Combat", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local Main = Orion:MakeWindow({Name = "Nexus Suite", HidePremium = true, SaveConfig = false})
+    local Tab = Main:MakeTab({Name = "Combat"})
     Tab:AddToggle({Name = "Aimbot Assist", Default = false, Callback = function(v) getgenv().Aimbot = v end})
     Tab:AddToggle({Name = "Wall ESP", Default = false, Callback = function(v) getgenv().Esp = v end})
     Orion:Init()
 
+    -- Delta Interface Minimize Overlay Trigger
     local UI = Instance.new("ScreenGui", CoreGui:FindFirstChild("RobloxGui") or CoreGui)
     local Btn = Instance.new("TextButton", UI)
     Btn.Size, Btn.Position, Btn.Text, Btn.Draggable, Btn.Active = UDim2.new(0,60,0,30), UDim2.new(0.05,0,0.2,0), "MENU", true, true
@@ -87,11 +83,6 @@ end
 KTab:AddTextbox({Name = "Enter Passkey", Default = "", TextDisappear = false, Callback = function(v) KeyInput = v end})
 KTab:AddButton({Name = "Copy Key URL", Callback = function() if setclipboard then setclipboard("https://pastebin.com") end end})
 KTab:AddButton({Name = "Verify", Callback = function()
-    if KeyInput == "ACCESS-KEY" then 
-        Orion:Destroy() 
-        task.wait(0.2) 
-        LoadHub() 
-    end
+    if KeyInput == "ACCESS-KEY" then Orion:Destroy() task.wait(0.2) LoadHub() end
 end})
-
 Orion:Init()
