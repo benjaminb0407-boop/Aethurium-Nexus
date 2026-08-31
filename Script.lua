@@ -26,7 +26,7 @@ local function GetClosest()
 end
 
 local function LoadHub()
-    -- Panel Initialization Success Pop-up
+    -- Immediate Workspace Active Notification
     game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = "Nexus Suite",
         Text = "Workspace synchronized successfully!",
