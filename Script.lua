@@ -26,6 +26,14 @@ local function GetClosest()
 end
 
 local function LoadHub()
+    -- Panel Initialization Success Pop-up
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Nexus Suite",
+        Text = "Workspace synchronized successfully!",
+        Icon = "rbxassetid://4483345998",
+        Duration = 4
+    })
+
     local Main = Orion:MakeWindow({Name = "Nexus Suite", HidePremium = true, SaveConfig = false})
     local Tab = Main:MakeTab({Name = "Combat"})
     Tab:AddToggle({Name = "Aimbot Assist", Default = false, Callback = function(v) getgenv().Aimbot = v end})
